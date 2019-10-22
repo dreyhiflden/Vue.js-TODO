@@ -28,13 +28,20 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    ADD_TODO_ITEM(state, newTodoItem) {
+    ADD_TODO_ITEM (state, newTodoItem) {
       state.todos.push(newTodoItem)
+    },
+    TOGGLE_TODO_ITEM_STATE (state, index) {
+      state.todos[index].completed === false ? state.todos[index].completed = true : state.todos[index].completed = false
     }
   },
   actions: {
     addTodoItem ({ commit }, newTodoItem) {
       commit('ADD_TODO_ITEM', newTodoItem)
+    },
+    toggleTodoItemState ( { commit, state }, todoId) {
+      let index = state.todos.findIndex(todoItem => todoItem.id === todoId);
+      commit('TOGGLE_TODO_ITEM_STATE', index)
     }
   }
 })

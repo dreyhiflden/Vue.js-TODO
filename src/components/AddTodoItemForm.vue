@@ -5,6 +5,7 @@
              type="text"
              placeholder="Input your deal"
              v-model="inputData"
+             required
       >
     </label>
     <button class="form__button" @click.prevent="addTodoItemMethod">Add to list</button>
