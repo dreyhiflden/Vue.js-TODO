@@ -1,23 +1,34 @@
 <template>
   <div>
     <AddTodoItem />
+    <ul class="todo-list">
+      <TodoListItem
+        v-for="todo in todos"
+        :key="todo.id"
+        :todo="todo"
+      />
+    </ul>
   </div>
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
   import AddTodoItem from "./AddTodoItemForm.vue";
+  import TodoListItem from "./TodoListItem";
 
   export default {
     name: "Todo",
-    components: {AddTodoItem},
-    data: function () {
-      return {
-
-      }
+    components: { TodoListItem, AddTodoItem },
+    computed: {
+      ...mapGetters({
+        'todos' : 'getTodos'
+      })
     }
   }
 </script>
 
 <style scoped lang="scss">
-
+  .todo-list {
+    padding: 0;
+  }
 </style>

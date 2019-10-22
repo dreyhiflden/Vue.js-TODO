@@ -1,0 +1,23 @@
+<template>
+  <li class="todo-list__item">
+    <label>
+      <input type="checkbox">
+    </label>
+    {{ todo.text }}
+    <button>Edit</button>
+    <button>Delete</button>
+  </li>
+</template>
+
+<script>
+  export default {
+    name: "TodoListItem",
+    props: [ 'todo' ],
+  }
+</script>
+
+<style scoped lang="scss">
+  .todo-list__item {
+    list-style: none;
+  }
+</style>
