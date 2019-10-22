@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Todo/>
+    <Todo />
   </div>
 </template>
 
@@ -16,7 +16,7 @@ export default {
 </script>
 
 <style>
-#app {
+  #app {
 
 }
 </style>
