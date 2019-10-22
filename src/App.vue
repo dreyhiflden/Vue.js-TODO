@@ -1,22 +1,23 @@
 <template>
   <div id="app">
-    <Todo />
+    <TodoList />
   </div>
 </template>
 
 <script>
-import Todo from './components/Todo.vue'
+import TodoList from './components/TodoList.vue'
 
 export default {
   name: 'app',
   components: {
-    Todo
+    TodoList
   }
 }
 </script>
 
 <style>
   #app {
-
-}
+    width: 500px;
+    margin: 0 auto;
+  }
 </style>
