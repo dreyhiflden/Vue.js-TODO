@@ -1,18 +1,36 @@
 <template>
   <form class="form" action="#">
     <label>
-      <input class="form__input" type="text" placeholder="Input your deal">
+      <input class="form__input"
+             type="text"
+             placeholder="Input your deal"
+             v-model="inputData"
+      >
     </label>
-    <button class="form__button">Add to list</button>
+    <button class="form__button" @click.prevent="addTodoItemMethod">Add to list</button>
   </form>
 </template>
 
 <script>
+  import { mapActions } from 'vuex'
+  import uuid from 'uuid/v4'
+
   export default {
     name: "AddTodoItemForm",
-    data: function () {
+    data() {
       return {
-
+        inputData: ''
+      }
+    },
+    methods: {
+      ...mapActions(['addTodoItem']),
+      addTodoItemMethod() {
+        const newTodoItem = {
+          text: this.inputData,
+          complete: false,
+          id: uuid()
+        };
+        this.addTodoItem( newTodoItem );
       }
     }
   }

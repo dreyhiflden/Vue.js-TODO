@@ -21,9 +21,9 @@
     components: { TodoListItem, AddTodoItem },
     computed: {
       ...mapGetters({
-        'todos' : 'getTodos'
+        'todos' : 'allTodos'
       })
-    }
+    },
   }
 </script>
 

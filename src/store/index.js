@@ -23,8 +23,18 @@ export default new Vuex.Store({
     ]
   },
   getters: {
-    getTodos(state) {
+    allTodos(state) {
       return state.todos
+    }
+  },
+  mutations: {
+    ADD_TODO_ITEM(state, newTodoItem) {
+      state.todos.push(newTodoItem)
+    }
+  },
+  actions: {
+    addTodoItem ({ commit }, newTodoItem) {
+      commit('ADD_TODO_ITEM', newTodoItem)
     }
   }
 })
