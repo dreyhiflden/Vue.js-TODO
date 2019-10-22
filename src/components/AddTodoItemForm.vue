@@ -19,18 +19,20 @@
     name: "AddTodoItemForm",
     data() {
       return {
-        inputData: ''
+        inputData: null
       }
     },
     methods: {
       ...mapActions(['addTodoItem']),
+
       addTodoItemMethod() {
         const newTodoItem = {
           text: this.inputData,
-          complete: false,
+          completed: false,
           id: uuid()
         };
         this.addTodoItem( newTodoItem );
+        this.inputData = null;
       }
     }
   }

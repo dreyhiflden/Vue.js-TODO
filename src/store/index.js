@@ -8,16 +8,16 @@ export default new Vuex.Store({
     todos: [
       {
         text: 'First element',
-        complete: false,
+        completed: false,
         id: 1231231231231,
       },
       {
         text: 'Second element',
-        complete: false,
+        completed: false,
         id: 1231231231211,
       }, {
         text: 'Third element',
-        complete: false,
+        completed: false,
         id: 1231231231215,
       },
     ]

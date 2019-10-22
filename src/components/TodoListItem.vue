@@ -1,7 +1,7 @@
 <template>
   <li class="todo-list__item">
     <label>
-      <input type="checkbox">
+      <input type="checkbox" v-model="todo.completed">
     </label>
     {{ todo.text }}
     <button>Edit</button>
