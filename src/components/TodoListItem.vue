@@ -1,11 +1,16 @@
 <template>
   <li class="todo-list__item">
-    <label>
-      <input type="checkbox" v-model="checked" @change="toggleTodoItemStateMethod(todo.id)">
-    </label>
-    <span class="">{{ todo.text }}</span>
-    <button>Edit</button>
-    <button>Delete</button>
+    <input type="checkbox" v-model="checked" @change="toggleCompletedStatusMethod(todo.id)">
+    <div v-if="!isEditing"
+         class="item-name"
+         :class="{ 'todo-list__item--completed': todo.completed }"
+    >
+      {{ todo.text }}
+    </div>
+    <input v-if="isEditing" type="text" v-model="todo.text" />
+    <button v-if="!isEditing" @click="toggleEditingState">Edit</button>
+    <button v-if="isEditing" @click="edit(todo)">Save</button>
+    <button @click="removeTodoItemMethod(todo)">Delete</button>
   </li>
 </template>
 
@@ -17,18 +22,29 @@
     data() {
       return {
         checked: '',
+        isEditing: false,
       }
     },
     props: {
       todo: Object
     },
     methods: {
-      ...mapActions(['toggleTodoItemState']),
+      ...mapActions(['toggleCompletedStatus', 'editTodoItem', 'removeTodoItem']),
 
-      toggleTodoItemStateMethod(todoId) {
-        this.toggleTodoItemState(todoId)
+      toggleCompletedStatusMethod(todoId) {
+        this.toggleCompletedStatus(todoId)
+      },
+      toggleEditingState() {
+        this.isEditing === false ? this.isEditing = true : this.isEditing = false;
+      },
+      edit(todoObj){
+        this.$store.dispatch('editTodoItem', todoObj);
+        this.toggleEditingState();
+      },
+      removeTodoItemMethod(todo) {
+        this.removeTodoItem(todo);
       }
-    }
+    },
   }
 </script>
 
@@ -39,5 +55,10 @@
 
   .todo-list__item--completed {
     text-decoration: line-through;
+  }
+
+  .item-name {
+    display: inline-block;
+    width: 300px;
   }
 </style>
