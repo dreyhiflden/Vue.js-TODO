@@ -8,6 +8,7 @@
         :todo="todo"
       />
     </ul>
+    <FiltersForTodoItems />
   </div>
 </template>
 
@@ -15,13 +16,14 @@
   import { mapGetters } from 'vuex'
   import AddTodoItem from "./AddTodoItemForm.vue";
   import TodoListItem from "./TodoListItem";
+  import FiltersForTodoItems from "./FiltersForTodoItems";
 
   export default {
     name: "Todo",
-    components: { TodoListItem, AddTodoItem },
+    components: { FiltersForTodoItems, TodoListItem, AddTodoItem },
     computed: {
       ...mapGetters({
-        'todos' : 'allTodos'
+        'todos' : 'filteredTodos'
       })
     },
   }

@@ -7,12 +7,29 @@ function findIndexById(state, todoId) {
   return state.todos.findIndex(todoItem => todoItem.id === todoId)
 }
 
+let filters = {
+  all: function (todos) {
+    return todos
+  },
+  uncompleted: function (todos) {
+    return todos.filter(function (todo) {
+      return !todo.completed
+    })
+  },
+  completed: function (todos) {
+    return todos.filter(function (todo) {
+      return todo.completed
+    })
+  }
+};
+
 export default new Vuex.Store({
+  strict: true,
   state: {
     todos: [
       {
         text: 'First element',
-        completed: false,
+        completed: true,
         id: 1231231231231,
       },
       {
@@ -25,11 +42,13 @@ export default new Vuex.Store({
         id: 1231231231215,
       },
     ],
+    visibility: 'all',
   },
   getters: {
-    allTodos(state) {
-      return state.todos
-    },
+    todos: state => state.todos,
+    // Вызываем локаульную функцию filters передавая в качестве ключа объекта наш state.visibiliti и второй аргумент
+    // это наша тудушка
+    filteredTodos: state => filters[state.visibility](state.todos)
   },
   mutations: {
     ADD_TODO_ITEM(state, newTodoItem) {
@@ -45,6 +64,9 @@ export default new Vuex.Store({
     REMOVE_TODO_ITEM (state, todo) {
       state.todos.splice(state.todos.indexOf(todo), 1)
     },
+    CHANGE_VISIBILITY_CATHEGORY (state, sortBy) {
+      state.visibility = sortBy
+    }
 
   },
   actions: {
@@ -60,6 +82,9 @@ export default new Vuex.Store({
     },
     removeTodoItem ({ commit }, todo) {
       commit('REMOVE_TODO_ITEM', todo)
+    },
+    changeVisibilityCathegory ( {commit}, sortBy ) {
+      commit('CHANGE_VISIBILITY_CATHEGORY', sortBy)
     }
   }
 })
