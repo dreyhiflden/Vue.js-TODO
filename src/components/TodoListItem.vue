@@ -1,6 +1,6 @@
 <template>
   <li class="todo-list__item">
-    <input type="checkbox" v-model="checked" @change="toggleCompletedStatusMethod(todo.id)">
+    <input type="checkbox" v-model="checked" @change="toggleCompletedStatusMethod(todo)">
     <div v-if="!isEditing"
          class="item-name"
          :class="{ 'todo-list__item--completed': todo.completed }"
@@ -21,8 +21,12 @@
     name: "TodoListItem",
     data() {
       return {
-        checked: '',
         isEditing: false,
+      }
+    },
+    computed: {
+      checked() {
+        return this.todo.completed;
       }
     },
     props: {
@@ -31,8 +35,8 @@
     methods: {
       ...mapActions(['toggleCompletedStatus', 'editTodoItem', 'removeTodoItem']),
 
-      toggleCompletedStatusMethod(todoId) {
-        this.toggleCompletedStatus(todoId)
+      toggleCompletedStatusMethod(todo) {
+        this.toggleCompletedStatus(todo)
       },
       toggleEditingState() {
         this.isEditing === false ? this.isEditing = true : this.isEditing = false;

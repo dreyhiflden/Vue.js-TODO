@@ -5,13 +5,22 @@
     <div class="progress__bar">
 
     </div>
-    <button class="progress__button">Complete all</button>
+    <button class="progress__button" @click="completeAllMethod">Complete all</button>
   </div>
 </template>
 
 <script>
+  import { mapActions } from "vuex";
+
   export default {
-    name: "TodoListProgress"
+    name: "TodoListProgress",
+    methods: {
+      ...mapActions(['completeAll']),
+
+      completeAllMethod() {
+        this.completeAll()
+      }
+    }
   }
 </script>
 

@@ -52,8 +52,8 @@ export default new Vuex.Store({
     ADD_TODO_ITEM (state, newTodoItem) {
       state.todos.push(newTodoItem)
     },
-    TOGGLE_COMPLETE_STATUS (state, index) {
-      state.todos[index].completed === false ? state.todos[index].completed = true : state.todos[index].completed = false
+    TOGGLE_COMPLETE_STATUS (state, todo) {
+      todo.completed = !todo.completed;
     },
     EDIT_TODO_ITEM (state, value){
       let todos = state.todos;
@@ -70,9 +70,8 @@ export default new Vuex.Store({
     addTodoItem ({ commit }, newTodoItem) {
       commit('ADD_TODO_ITEM', newTodoItem)
     },
-    toggleCompletedStatus ( { state, commit }, todoId) {
-      let index = findIndexById(state, todoId);
-      commit('TOGGLE_COMPLETE_STATUS', index)
+    toggleCompletedStatus ( { state, commit }, todo) {
+      commit('TOGGLE_COMPLETE_STATUS', todo)
     },
     editTodoItem ({ state, commit, dispatch }, todoObject) {
       commit('EDIT_TODO_ITEM', todoObject);
@@ -87,6 +86,12 @@ export default new Vuex.Store({
       state.todos.filter(todo => todo.completed)
         .forEach(todo => {
           commit('REMOVE_TODO_ITEM', todo)
+        })
+    },
+    completeAll ({ state, commit }) {
+      state.todos.filter(todo => !todo.completed)
+        .forEach(todo => {
+          commit('TOGGLE_COMPLETE_STATUS', todo)
         })
     }
   }
