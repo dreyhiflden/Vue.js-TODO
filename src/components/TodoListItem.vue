@@ -1,13 +1,13 @@
 <template>
   <li class="todo-list__item">
-    <input type="checkbox" v-model="checked" @change="toggleCompletedStatusMethod(todo)">
+    <input type="checkbox" :checked="checked" @change="toggleCompletedStatusMethod(todo)">
     <div v-if="!isEditing"
          class="item-name"
          :class="{ 'todo-list__item--completed': todo.completed }"
     >
       {{ todo.text }}
     </div>
-    <input v-if="isEditing" type="text" v-model="todo.text" />
+    <input v-if="isEditing" type="text" :value="todo.text" @change="bufferingText"/>
     <button v-if="!isEditing" @click="toggleEditingState">Edit</button>
     <button v-if="isEditing" @click="edit(todo)">Save</button>
     <button @click="removeTodoItemMethod(todo)">Delete</button>
@@ -22,6 +22,7 @@
     data() {
       return {
         isEditing: false,
+        bufferingInputText: ''
       }
     },
     computed: {
@@ -39,14 +40,25 @@
         this.toggleCompletedStatus(todo)
       },
       toggleEditingState() {
-        this.isEditing === false ? this.isEditing = true : this.isEditing = false;
+        this.isEditing = !this.isEditing;
       },
-      edit(todoObj){
-        this.$store.dispatch('editTodoItem', todoObj);
+      // edit(todo){
+      //   console.log(todo);
+      //   this.$store.dispatch('editTodoItem', todo);
+      //   this.toggleEditingState();
+      // },
+      edit(todo){
+        this.editTodoItem({
+          newText : this.bufferingInputText,
+          todoId : this.todo.id
+        });
         this.toggleEditingState();
       },
       removeTodoItemMethod(todo) {
         this.removeTodoItem(todo);
+      },
+      bufferingText(e) {
+        this.bufferingInputText = e.target.value;
       }
     },
   }
