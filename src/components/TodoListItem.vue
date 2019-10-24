@@ -42,15 +42,10 @@
       toggleEditingState() {
         this.isEditing = !this.isEditing;
       },
-      // edit(todo){
-      //   console.log(todo);
-      //   this.$store.dispatch('editTodoItem', todo);
-      //   this.toggleEditingState();
-      // },
       edit(todo){
         this.editTodoItem({
           newText : this.bufferingInputText,
-          todoId : this.todo.id
+          todoId : todo.id
         });
         this.toggleEditingState();
       },

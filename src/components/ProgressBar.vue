@@ -4,7 +4,7 @@
       A Vue.js component to draw animated circular progress bars!
     </p>
     <vue-circle class="" ref="circleProgress"
-      :progress="total"
+      :progress="total || 0"
       :size="200"
       :reverse="false"
       line-cap="round"

@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import VuexPersist from 'vuex-persist'
+
 
 Vue.use(Vuex);
 
@@ -23,25 +25,15 @@ let filters = {
   }
 };
 
+const vuexPersist = new VuexPersist({
+  key: 'todo-appv1',
+  storage: window.localStorage
+});
+
 export default new Vuex.Store({
-  strict: true,
+  plugins: [vuexPersist.plugin],
   state: {
-    todos: [
-      {
-        text: 'First element',
-        completed: true,
-        id: 1231231231231,
-      },
-      {
-        text: 'Second element',
-        completed: false,
-        id: 1231231231211,
-      }, {
-        text: 'Third element',
-        completed: false,
-        id: 1231231231215,
-      },
-    ],
+    todos: [],
     visibility: 'all',
   },
   getters: {
