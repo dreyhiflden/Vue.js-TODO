@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import VuexPersist from 'vuex-persist'
 
-
 Vue.use(Vuex);
 
 function findIndexById(state, todoId) {
@@ -53,8 +52,8 @@ export default new Vuex.Store({
     REMOVE_TODO_ITEM (state, todo) {
       state.todos.splice(state.todos.indexOf(todo), 1)
     },
-    CHANGE_VISIBILITY_CATHEGORY (state, sortBy) {
-      state.visibility = sortBy
+    FILTER_TODOS (state, filterBy) {
+      state.visibility = filterBy
     },
   },
   actions: {
@@ -75,8 +74,8 @@ export default new Vuex.Store({
     removeTodoItem ({ commit }, todo) {
       commit('REMOVE_TODO_ITEM', todo)
     },
-    changeVisibilityCathegory ( {commit}, sortBy ) {
-      commit('CHANGE_VISIBILITY_CATHEGORY', sortBy)
+    filterTodos ( {commit}, filterBy ) {
+      commit('FILTER_TODOS', filterBy)
     },
     clearCompleted ({ state, commit }) {
       state.todos.filter(todo => todo.completed)

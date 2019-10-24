@@ -1,10 +1,7 @@
 <template>
   <div class="progressbar">
-    <p>
-      A Vue.js component to draw animated circular progress bars!
-    </p>
     <vue-circle class="" ref="circleProgress"
-      :progress="total || 0"
+      :progress="total"
       :size="200"
       :reverse="false"
       line-cap="round"
@@ -15,7 +12,6 @@
       insert-mode="append"
       :thickness="20"
       :show-percent="true">
-      <p>Slot!</p>
     </vue-circle>
 
   </div>
@@ -37,16 +33,8 @@
         let total = this.$store.state.todos.length;
         let completed = this.$store.state.todos
           .filter(todo => todo.completed).length;
-        return completed / total * 100
+        return completed / total * 100 || 0
       }
-    },
-    methods:{
-      // progress(event, progress, stepValue){
-      //
-      // },
-      // progress_end(event){
-      //
-      // },
     },
     watch: {
       total() {

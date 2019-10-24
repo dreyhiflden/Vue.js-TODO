@@ -1,24 +1,44 @@
 <template>
   <div class="filters">
     <ul class="filter-list">
-      <li class="filter-list__item filter-list__item--active" @click="changeVisibilityCathegoryMethod('all')">All</li>
-      <li class="filter-list__item" @click="changeVisibilityCathegoryMethod('completed')">Completed</li>
-      <li class="filter-list__item" @click="changeVisibilityCathegoryMethod('uncompleted')">Uncompleted</li>
+      <li class="filter-list__item"
+          :class="{
+            'filter-list__item--active': (visibility === 'all')
+          }"
+          @click="filterTodosMethod('all')">
+        All
+      </li>
+      <li class="filter-list__item"
+          :class="{
+            'filter-list__item--active': (visibility === 'completed')
+           }"
+          @click="filterTodosMethod('completed')">
+        Completed
+      </li>
+      <li class="filter-list__item"
+          :class="{
+            'filter-list__item--active': (visibility === 'uncompleted')
+           }"
+          @click="filterTodosMethod('uncompleted')">
+        Uncompleted
+      </li>
     </ul>
   </div>
 </template>
 
 <script>
-  import { mapActions } from "vuex";
-
+  import { mapActions, mapState } from "vuex";
 
   export default {
     name: "FilterControls",
+    computed: mapState ({
+      visibility: state => state.visibility,
+    }),
     methods: {
-      ...mapActions(['changeVisibilityCathegory']),
+      ...mapActions(['filterTodos']),
 
-      changeVisibilityCathegoryMethod(sortBy) {
-        this.changeVisibilityCathegory(sortBy)
+      filterTodosMethod(filterBy) {
+        this.filterTodos(filterBy)
       }
     }
   }
