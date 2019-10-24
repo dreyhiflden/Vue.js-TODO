@@ -13,7 +13,7 @@
 
 
   export default {
-    name: "FiltersForTodoItems",
+    name: "FilterControls",
     methods: {
       ...mapActions(['changeVisibilityCathegory']),
 

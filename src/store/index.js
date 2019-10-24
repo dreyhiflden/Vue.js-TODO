@@ -46,18 +46,16 @@ export default new Vuex.Store({
   },
   getters: {
     todos: state => state.todos,
-    // Вызываем локаульную функцию filters передавая в качестве ключа объекта наш state.visibiliti и второй аргумент
-    // это наша тудушка
     filteredTodos: state => filters[state.visibility](state.todos)
   },
   mutations: {
-    ADD_TODO_ITEM(state, newTodoItem) {
+    ADD_TODO_ITEM (state, newTodoItem) {
       state.todos.push(newTodoItem)
     },
-    TOGGLE_COMPLETE_STATUS(state, index) {
+    TOGGLE_COMPLETE_STATUS (state, index) {
       state.todos[index].completed === false ? state.todos[index].completed = true : state.todos[index].completed = false
     },
-    EDIT_TODO_ITEM(state, value){
+    EDIT_TODO_ITEM (state, value){
       let todos = state.todos;
       state.todos = todos;
     },
@@ -66,8 +64,7 @@ export default new Vuex.Store({
     },
     CHANGE_VISIBILITY_CATHEGORY (state, sortBy) {
       state.visibility = sortBy
-    }
-
+    },
   },
   actions: {
     addTodoItem ({ commit }, newTodoItem) {
@@ -85,6 +82,12 @@ export default new Vuex.Store({
     },
     changeVisibilityCathegory ( {commit}, sortBy ) {
       commit('CHANGE_VISIBILITY_CATHEGORY', sortBy)
+    },
+    clearCompleted ({ state, commit }) {
+      state.todos.filter(todo => todo.completed)
+        .forEach(todo => {
+          commit('REMOVE_TODO_ITEM', todo)
+        })
     }
   }
 })
