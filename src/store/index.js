@@ -25,7 +25,7 @@ let filters = {
 };
 
 const vuexPersist = new VuexPersist({
-  key: 'todo-appv1',
+  key: 'todo-appv2',
   storage: window.localStorage
 });
 

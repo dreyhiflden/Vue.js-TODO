@@ -4,8 +4,7 @@
       <input class="form__input"
              type="text"
              placeholder="Input your deal"
-             v-model="inputData"
-             required
+             v-model="newTodo"
       >
     </label>
     <button class="form__button" @click.prevent="addTodoItemMethod">Add to list</button>
@@ -20,20 +19,25 @@
     name: "AddTodoItemForm",
     data() {
       return {
-        inputData: null
+        newTodo: null
       }
     },
     methods: {
       ...mapActions(['addTodoItem']),
 
       addTodoItemMethod() {
-        const newTodoItem = {
-          text: this.inputData,
+        let value = this.newTodo && this.newTodo.trim();
+        if (!value) {
+          return;
+        }
+
+        this.addTodoItem({
+          text: this.newTodo,
           completed: false,
           id: uuid()
-        };
-        this.addTodoItem( newTodoItem );
-        this.inputData = null;
+        });
+
+        this.newTodo = null;
       }
     }
   }
