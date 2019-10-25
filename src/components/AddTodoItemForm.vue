@@ -4,6 +4,7 @@
              type="text"
              id="todo-input"
              placeholder=""
+             maxlength="36"
              v-model="newTodo"
       >
     <label class="add-todo-form__label" for="todo-input">Input your deal</label>
