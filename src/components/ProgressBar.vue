@@ -1,8 +1,8 @@
 <template>
   <div class="progressbar">
-    <vue-circle class="" ref="circleProgress"
+    <vue-circle class="progressbar" ref="circleProgress"
       :progress="total"
-      :size="200"
+      :size="100"
       :reverse="false"
       line-cap="round"
       :fill="fill"
@@ -10,10 +10,9 @@
       :animation-start-value="0.0"
       :start-angle="2"
       insert-mode="append"
-      :thickness="20"
+      :thickness="10"
       :show-percent="true">
     </vue-circle>
-
   </div>
 </template>
 
@@ -44,6 +43,9 @@
   }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+  .progressbar {
+    color: #fff;
+  }
 
 </style>

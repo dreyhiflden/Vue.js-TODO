@@ -16,7 +16,7 @@ export default {
 </script>
 
 <style>
-  #app {
-    margin: 0 auto;
+  body {
+    background: #D5D7DE;
   }
 </style>

@@ -1,22 +1,15 @@
 <template>
-  <div class="container">
-    <div class="left-panel">
-      <TodoListStats />
-    </div>
-    <div class="middle-panel">
-    <AddTodoItem />
-    <ul class="todo-list">
-      <TodoListItem
-        v-for="todo in todos"
-        :key="todo.id"
-        :todo="todo"
-      />
-    </ul>
-    <FilterControls />
-    </div>
-
-    <div class="right-panel">
-      <TodoListProgress />
+  <div class="wrapper">
+    <div class="main">
+      <AddTodoItem />
+      <ul class="todo-list">
+        <TodoListItem v-for="todo in todos" :key="todo.id" :todo="todo"/>
+      </ul>
+      <FilterControls />
+      <div class="container">
+        <TodoListStats />
+        <TodoListProgress />
+      </div>
     </div>
   </div>
 </template>
@@ -31,7 +24,7 @@
 
   export default {
     name: "Todo",
-    components: {TodoListProgress, TodoListStats, FilterControls, TodoListItem, AddTodoItem },
+    components: { TodoListProgress, TodoListStats, FilterControls, TodoListItem, AddTodoItem },
     computed: {
       ...mapGetters({
         'todos' : 'filteredTodos'
@@ -40,29 +33,59 @@
   }
 </script>
 
-<style scoped lang="scss">
-  .container {
-    justify-content: space-between;
+<style lang="scss">
+  .button {
+    text-transform: uppercase;
+    border-radius: 1.5rem;
+    font-weight: 500;
+    text-shadow: 1px 1px 2px black;
+    font-size: 14px;
+    padding: 0.5rem;
+    outline: none;
+    cursor: pointer;
+    transition: all ease-in 0.1s;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.22);
+    }
+
+    &:active {
+      background: rgba(250, 250, 255, 0.22);
+    }
+  }
+
+  .wrapper {
+    margin: 150px 0;
+    justify-content: space-around;
     display: flex;
     flex-direction: row;
-    max-width: 1024px;
-    margin: 0 auto;
   }
 
-  .left-panel {
-
+  .container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
   }
 
-  .middle-panel {
-
-  }
-
-  .right-panel {
-
+  .main {
+    min-height: 500px;
+    min-width: 500px;
+    background-image: radial-gradient(circle at 31% 0,#4f48ad,#1d175e);
+    border-radius: 15px;
+    box-shadow: 0 10px 10px -5px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
   .todo-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     padding: 0;
-    flex-grow: 1;
+    flex-shrink: 0;
   }
 </style>

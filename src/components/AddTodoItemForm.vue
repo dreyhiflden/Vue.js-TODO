@@ -1,13 +1,13 @@
 <template>
-  <form class="form" action="#">
-    <label>
-      <input class="form__input"
+  <form class="add-todo-form" autocomplete="off">
+      <input class="add-todo-form__input"
              type="text"
-             placeholder="Input your deal"
+             id="todo-input"
+             placeholder=""
              v-model="newTodo"
       >
-    </label>
-    <button class="form__button" @click.prevent="addTodoItemMethod">Add to list</button>
+    <label class="add-todo-form__label" for="todo-input">Input your deal</label>
+    <button class="button add-todo-form__button" @click.prevent="addTodoItemMethod">Add to list</button>
   </form>
 </template>
 
@@ -44,19 +44,50 @@
 </script>
 
 <style scoped lang="scss">
-  .form {
-    margin: 20px 20px;
+  .add-todo-form {
+    padding: 20px 0;
     display: flex;
+    position: relative;
+    justify-content: space-between;
+    width: 100%;
   }
 
-  .form__input {
+  .add-todo-form__input {
     height: 28px;
+    width: 76%;
+    background: rgba(0, 0, 0, 0.19);
+    padding: 20px;
+    border-radius: 3px;
+    text-indent: 0.5em;
+    color: #fff;
+    outline: none;
+    transition: all ease 0.2s;
+    border: 1px dashed #667dff;
+
+    &:hover,
+    &:focus {
+      box-shadow: 2px 2px 10px #000;
+    }
+
+    &:focus + .add-todo-form__label  {
+      transform: translateY(-30px);
+      font-size: 12px;
+      color: #ffffff;
+    }
   }
 
-  .form__button {
-    text-transform: uppercase;
+  .add-todo-form__label {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.13);
+    top: 33px;
+    left: 30px;
+    transition: all ease 0.5s;
+    font-weight: 500;
+  }
+
+  .add-todo-form__button {
     color: #fff;
-    background: #2a6fff;
-    border: none;
+    border: 1px solid #667dff;
+    background: rgba(42, 111, 255, 0);
   }
 </style>
