@@ -17,7 +17,7 @@
 </template>
 
 <script>
-  import VueCircle from 'vue2-circle-progress'
+  import VueCircle from 'vue2-circle-progress/src/index.vue'
   export default {
     components: {
       VueCircle
