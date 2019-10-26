@@ -13,7 +13,13 @@
       {{ todo.text }}
     </label>
 
-    <input class="todo-list__edit-input" v-if="isEditing" type="text" :value="todo.text" @change="bufferingText"/>
+    <input class="todo-list__edit-input"
+           v-if="isEditing"
+           type="text"
+           maxlength="36"
+           :value="todo.text"
+           @change="bufferingText"/>
+
     <button class="button todo-list__button" v-if="!isEditing" @click="toggleEditingState">Edit</button>
     <button class="button todo-list__button" v-if="isEditing" @click="edit(todo)">Save</button>
     <button class="button todo-list__button" @click="removeTodoItemMethod(todo)">Delete</button>

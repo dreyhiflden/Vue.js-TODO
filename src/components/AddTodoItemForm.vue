@@ -4,6 +4,8 @@
              type="text"
              id="todo-input"
              placeholder=""
+             @blur="clearInput"
+             maxlength="36"
              v-model="newTodo"
       >
     <label class="add-todo-form__label" for="todo-input">Input your deal</label>
@@ -38,6 +40,10 @@
         });
 
         this.newTodo = null;
+      },
+
+      clearInput(e) {
+        e.target.value = '';
       }
     }
   }
