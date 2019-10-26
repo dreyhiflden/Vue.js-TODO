@@ -4,8 +4,8 @@
              type="text"
              id="todo-input"
              placeholder=""
-             @blur="clearInput"
-             maxlength="36"
+             required
+             maxlength="30"
              v-model="newTodo"
       >
     <label class="add-todo-form__label" for="todo-input">Input your deal</label>
@@ -41,10 +41,6 @@
 
         this.newTodo = null;
       },
-
-      clearInput(e) {
-        e.target.value = '';
-      }
     }
   }
 </script>
@@ -75,7 +71,8 @@
       box-shadow: 2px 2px 10px #000;
     }
 
-    &:focus + .add-todo-form__label  {
+    &:focus + .add-todo-form__label,
+    &:valid + .add-todo-form__label {
       transform: translateY(-30px);
       font-size: 12px;
       color: #ffffff;
