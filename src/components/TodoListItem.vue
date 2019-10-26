@@ -16,7 +16,7 @@
     <input class="todo-list__edit-input"
            v-if="isEditing"
            type="text"
-           maxlength="36"
+           maxlength="30"
            :value="todo.text"
            @change="bufferingText"/>
 
