@@ -1,5 +1,8 @@
-# Vue.js TODO with using Vuex
-Application written using Vuex, SCSS
+# Vue.js TODO application
+Written using Vuex, SCSS - [live-demo](https://dreyhiflden.github.io/Vue.js-TODO/dist/)
+
+![Todo application screenshot](https://i.imgur.com/LuV9xYN.png)
+
 
 ## Project setup
 ```

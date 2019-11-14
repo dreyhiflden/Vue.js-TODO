@@ -8,7 +8,7 @@
       :fill="fill"
       empty-fill="rgba(0, 0, 0, .1)"
       :animation-start-value="0.0"
-      :start-angle="2"
+      :start-angle="1.6"
       insert-mode="append"
       :thickness="10"
       :show-percent="true">
