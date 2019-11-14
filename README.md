@@ -1,4 +1,5 @@
-# todotestcase
+# Vue.js TODO with using Vuex
+Application written using Vuex, SCSS
 
 ## Project setup
 ```
